@@ -5,7 +5,7 @@ import { TCardFormat } from '@/lib/types';
 
 const Card = ({ artworkUrl60, artistName, collectionName, primaryGenreName, country }: TCardFormat) => {
     return (
-        <div className="p-2 min-h-[180px] flex flex-col gap-2 items-center bg-red-100 backdrop-blur-md rounded-lg shadow-sm hover:shadow-md transition">
+        <div className="dark:bg-slate-100 dark:shadow-red-500 p-2 min-h-[180px] flex flex-col gap-2 items-center bg-red-100 backdrop-blur-md rounded-lg shadow-sm hover:shadow-md transition">
             <div className="w-full h-full flex flex-col lg:flex-row gap-3 items-center">
                 <div className="w-auto">
                     {artworkUrl60 && (

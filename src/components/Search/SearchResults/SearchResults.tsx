@@ -22,7 +22,7 @@ const SearchResults = ({ resultsData, loading, error }: TListSearchedData) => {
     if (topBlock) {
       setIsShowGoTop(window.scrollY > topBlock + 100);
     }
-  }, [topBlock, isShowGoTop])
+  }, [topBlock])
 
   const handlerClickTopButton = () => {
     if (!window) return;

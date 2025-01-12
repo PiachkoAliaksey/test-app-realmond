@@ -7,7 +7,7 @@ const useScreenSizeHook = () => {
     });
 
     useLayoutEffect(() => {
-        if (!window) return
+        if (!window) return;
 
         setScreenSize({
             width: window.innerWidth,

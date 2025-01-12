@@ -29,7 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen px-1 sm:px-4 gap-4 md:gap-8 font-[family-name:var(--font-geist-sans)]">
+        <div className="dark:bg-slate-900 grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen px-1 sm:px-4 gap-4 md:gap-8 font-[family-name:var(--font-geist-sans)]">
           <Header />
           {children}
           <Footer />
