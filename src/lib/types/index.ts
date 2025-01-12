@@ -21,8 +21,6 @@ export type TCardFormat = {
 
 export type TFieldSearchInput = {
     handleSearch: (queryParam: string) => void,
-    setQuery: React.Dispatch<React.SetStateAction<string>>,
-    query: string,
     loading:boolean
 }
 

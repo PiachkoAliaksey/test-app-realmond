@@ -1,20 +1,22 @@
 "use client"
 
 import React, { useRef, useCallback, useLayoutEffect, useState } from "react";
-import Button from "../common/Button/Button";
-import FieldInput from "../common/FieldInput/FieldInput";
+
 import { BsSearch } from "react-icons/bs";
+
+import Button from "../../common/Button/Button";
+import FieldInput from "../../common/FieldInput/FieldInput";
+
 import { TFieldSearchInput } from "@/lib/types";
 import useScreenSizeHook from "@/lib/hooks/useScreenSizeHook";
 
 
-
-
-const FieldSearchInput = ({ handleSearch, setQuery, query, loading }: TFieldSearchInput) => {
+const SearchInput = ({ handleSearch, loading }: TFieldSearchInput) => {
     const refSearch = useRef<HTMLFormElement>(null);
     const { width } = useScreenSizeHook();
     const [bottomSearch, setBottomSearch] = useState<number>(0);
     const [isFixedSearch,setIsFixedSearch] = useState(false);
+    const [query, setQuery] = useState("");
 
     const onScroll = useCallback(() => {
         if (!window) return;
@@ -30,10 +32,11 @@ const FieldSearchInput = ({ handleSearch, setQuery, query, loading }: TFieldSear
         if (refSearch.current) {
             setBottomSearch(refSearch.current.getBoundingClientRect().bottom)
         }
-
     },[])
 
     useLayoutEffect(() => {
+        if (!window) return;
+        
         if (width > 768) {
             window.addEventListener('scroll', onScroll);
             return () => {
@@ -50,7 +53,7 @@ const FieldSearchInput = ({ handleSearch, setQuery, query, loading }: TFieldSear
 
     const handlerOnChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
         const inputValue = (e.target as HTMLInputElement).value.toLowerCase().trim();
-        setQuery(inputValue)
+        setQuery(inputValue);
     }
 
     return (
@@ -73,4 +76,4 @@ const FieldSearchInput = ({ handleSearch, setQuery, query, loading }: TFieldSear
     )
 }
 
-export default FieldSearchInput
+export default SearchInput;

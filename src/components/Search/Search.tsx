@@ -3,14 +3,14 @@
 import React from "react"
 
 import { useState } from "react";
+
 import { apiGetMediaData } from "@/lib/api/apiGetMedia";
 import { TCardFormat } from "@/lib/types";
 
-import FieldSearchInput from "../FieldSearchInput/FieldSearchInput"
-import ListSearchedData from "../ListSearchedData/ListSearchedData"
+import SearchInput from "./SearchInput/SearchInput";
+import SearchResults from "./SearchResults/SearchResults";
 
 const Search = () => {
-    const [query, setQuery] = useState("");
     const [results, setResults] = useState<TCardFormat[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -37,8 +37,8 @@ const Search = () => {
 
     return (
         <>
-            <FieldSearchInput loading={loading} handleSearch={handleSearch} setQuery={setQuery} query={query} />
-            <ListSearchedData resultsData={results} loading={loading} error={error} />
+            <SearchInput loading={loading} handleSearch={handleSearch}/>
+            <SearchResults resultsData={results} loading={loading} error={error} />
         </>
     )
 }

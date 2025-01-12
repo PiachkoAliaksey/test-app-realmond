@@ -1,14 +1,17 @@
 "use client"
 
 import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
-import Card from "../Card/Card";
-import SkeletonItem from "../SkeletonItem/SkeletonItem";
-import { TListSearchedData } from "@/lib/types";
-import Button from "../common/Button/Button";
+
 import { FaChevronUp } from "react-icons/fa6";
 
+import Button from "../../common/Button/Button";
+import Card from "../../Card/Card";
+import SkeletonItem from "../../SkeletonItem/SkeletonItem";
+import { TListSearchedData } from "@/lib/types";
 
-const ListSearchedData = ({ resultsData, loading, error }: TListSearchedData) => {
+
+
+const SearchResults = ({ resultsData, loading, error }: TListSearchedData) => {
   const refList = useRef<HTMLDivElement>(null);
   const [topBlock, setTopBlock] = useState<number | null>(null);
   const [isShowGoTop, setIsShowGoTop] = useState(false);
@@ -17,11 +20,7 @@ const ListSearchedData = ({ resultsData, loading, error }: TListSearchedData) =>
     if (!window) return;
 
     if (topBlock) {
-      if (window.scrollY > topBlock + 100) {
-        setIsShowGoTop(true);
-      } else {
-        setIsShowGoTop(false);
-      }
+      setIsShowGoTop(window.scrollY > topBlock + 100);
     }
   }, [topBlock, isShowGoTop])
 
@@ -38,6 +37,7 @@ const ListSearchedData = ({ resultsData, loading, error }: TListSearchedData) =>
   }, [])
 
   useLayoutEffect(() => {
+    if (!window) return;
     window.addEventListener('scroll', handlerScrollList);
     return () => {
       window.removeEventListener('scroll', handlerScrollList);
@@ -62,12 +62,11 @@ const ListSearchedData = ({ resultsData, loading, error }: TListSearchedData) =>
             />
           ))
           }
-
-          {isShowGoTop && <Button handlerClick={handlerClickTopButton} title={<FaChevronUp />} type="button" addClassNames="fixed left-[90%] bottom-[10%] flex items-center justify-center shadow-2xl bg-red-400 backdrop-blur-md w-14 h-14 rounded-full b-2 transition hover:scale-110 " />}
+          {isShowGoTop && <Button handlerClick={handlerClickTopButton} title={<FaChevronUp className="text-white" />} type="button" addClassNames="fixed left-[90%] bottom-[10%] flex items-center justify-center shadow-2xl bg-red-400 backdrop-blur-md w-14 h-14 rounded-full b-2 transition hover:scale-110 " />}
         </div>
       )}
     </>
   )
 }
 
-export default ListSearchedData
+export default SearchResults;
