@@ -18,14 +18,12 @@ const ListSearchedData = ({ resultsData, loading, error }: TListSearchedData) =>
 
     if (topBlock) {
       if (window.scrollY > topBlock + 100) {
-        console.log('1')
         setIsShowGoTop(true);
       } else {
-        console.log('2')
         setIsShowGoTop(false);
       }
     }
-  },[topBlock,isShowGoTop])
+  }, [topBlock, isShowGoTop])
 
   const handlerClickTopButton = () => {
     if (!window) return;
@@ -52,9 +50,9 @@ const ListSearchedData = ({ resultsData, loading, error }: TListSearchedData) =>
         <div ref={refList} className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {loading ? [...Array(10).keys()].map((item) => (
             <SkeletonItem key={item} />
-          )) : resultsData.map((item) => (
+          )) : resultsData.map((item, index) => (
             <Card
-              key={item.id}
+              key={`${item.id}-${index}`}
               id={item.id}
               artistName={item.artistName}
               artworkUrl60={item.artworkUrl60}
